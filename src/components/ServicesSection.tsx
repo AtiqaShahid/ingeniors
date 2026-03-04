@@ -1,34 +1,16 @@
 import { motion } from "framer-motion";
 import { Box, PenTool, FileText, Layers, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { services } from "@/data/services";
 
-const services = [
-  {
-    icon: Layers,
-    title: "Structural Analysis",
-    description: "We provide detailed insights into the structural integrity and performance of various designs, from machinery chassis to electronic equipment.",
-  },
-  {
-    icon: Box,
-    title: "3D CAD Modeling",
-    description: "Utilizing state-of-the-art technology and deep industry expertise, we cater to various manufacturing needs, including CNC machining, 3D printing, and more.",
-  },
-  {
-    icon: FileText,
-    title: "2D Technical Drawings",
-    description: "Our 2D Technical and Manufacturing Drawing Services, perfect for detailed production schematics. We specialize in GDT to ensure high-quality outcomes.",
-  },
-  {
-    icon: PenTool,
-    title: "Sheet Metal Design",
-    description: "Leveraging advanced CAD tools, we deliver customized solutions, including enclosure designs, DXF files, reverse engineering, and comprehensive engineering documentation.",
-  },
-  {
-    icon: Eye,
-    title: "Product Visualization",
-    description: "Specializing in high-impact visual content, we create engaging animations and renderings that boost marketing efforts and enhance customer engagement.",
-  },
-];
+const iconMap: Record<string, React.ElementType> = {
+  "structural-analysis": Layers,
+  "3d-cad-modeling": Box,
+  "2d-technical-drawings": FileText,
+  "sheet-metal-design": PenTool,
+  "product-visualization": Eye,
+};
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -55,32 +37,52 @@ const ServicesSection = () => {
             <span className="text-gradient">Expert Design</span> Services
           </h2>
           <div className="flex items-center gap-4 mt-6">
-            <Button variant="glow" size="sm">Get Started</Button>
+            <Button variant="glow" size="sm" asChild>
+              <Link to="/services">View All Services</Link>
+            </Button>
           </div>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, i) => (
-            <motion.div
-              key={service.title}
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={cardVariants}
-              className="glass-card p-6 lg:p-8 group hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 cursor-pointer"
-            >
-              <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-5 group-hover:shadow-[0_0_20px_-5px_hsl(var(--glow-primary)/0.4)] transition-shadow duration-300">
-                <service.icon className="w-5 h-5 text-primary" />
-              </div>
-              <h3 className="font-heading text-lg font-semibold mb-3 text-foreground">
-                {service.title}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {service.description}
-              </p>
-            </motion.div>
-          ))}
+          {services.map((service, i) => {
+            const Icon = iconMap[service.slug] || Layers;
+            return (
+              <motion.div
+                key={service.slug}
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={cardVariants}
+              >
+                <Link to={`/services/${service.slug}`} className="block">
+                  <div className="glass-card overflow-hidden group hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
+                    <div className="h-40 relative overflow-hidden">
+                      <img
+                        src={service.thumbnail}
+                        alt={service.title}
+                        className="w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-[1.03] transition-all duration-500"
+                        loading="lazy"
+                        onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.svg"; }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+                    </div>
+                    <div className="p-6 lg:p-8">
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-5 group-hover:shadow-[0_0_20px_-5px_hsl(var(--glow-primary)/0.4)] transition-shadow duration-300">
+                        <Icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <h3 className="font-heading text-lg font-semibold mb-3 text-foreground group-hover:text-primary transition-colors">
+                        {service.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {service.shortDescription}
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
