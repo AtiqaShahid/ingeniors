@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const FooterSection = () => {
   return (
@@ -14,11 +15,10 @@ const FooterSection = () => {
             <p className="text-muted-foreground mb-10 max-w-lg mx-auto">
               Let's collaborate to bring your next engineering project to life with precision and innovation.
             </p>
-            <Button variant="glow" size="lg" className="text-base px-10">
-              Get Started <ArrowRight className="w-4 h-4 ml-2" />
+            <Button variant="glow" size="lg" className="text-base px-10" asChild>
+              <Link to="/contact">Get Started <ArrowRight className="w-4 h-4 ml-2" /></Link>
             </Button>
           </div>
-          {/* Background glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
         </div>
       </section>
@@ -28,9 +28,9 @@ const FooterSection = () => {
         <div className="container mx-auto px-4">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             <div>
-              <span className="font-heading text-xl font-bold mb-4 block">
+              <Link to="/" className="font-heading text-xl font-bold mb-4 block">
                 GEOMETRIC<span className="text-gradient">X</span>
-              </span>
+              </Link>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Precise Innovative Solutions for modern engineering challenges.
               </p>
@@ -38,27 +38,27 @@ const FooterSection = () => {
             <div>
               <h4 className="font-heading font-semibold text-sm mb-4 text-foreground">Services</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li className="hover:text-primary transition-colors cursor-pointer">Structural Analysis</li>
-                <li className="hover:text-primary transition-colors cursor-pointer">3D CAD Modeling</li>
-                <li className="hover:text-primary transition-colors cursor-pointer">2D Technical Drawings</li>
-                <li className="hover:text-primary transition-colors cursor-pointer">Sheet Metal Design</li>
+                <li><Link to="/services/structural-analysis" className="hover:text-primary transition-colors">Structural Analysis</Link></li>
+                <li><Link to="/services/3d-cad-modeling" className="hover:text-primary transition-colors">3D CAD Modeling</Link></li>
+                <li><Link to="/services/2d-technical-drawings" className="hover:text-primary transition-colors">2D Technical Drawings</Link></li>
+                <li><Link to="/services/sheet-metal-design" className="hover:text-primary transition-colors">Sheet Metal Design</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-heading font-semibold text-sm mb-4 text-foreground">Company</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li className="hover:text-primary transition-colors cursor-pointer">About Us</li>
-                <li className="hover:text-primary transition-colors cursor-pointer">Projects</li>
-                <li className="hover:text-primary transition-colors cursor-pointer">Blog</li>
-                <li className="hover:text-primary transition-colors cursor-pointer">Contact</li>
+                <li><Link to="/about" className="hover:text-primary transition-colors">About Us</Link></li>
+                <li><Link to="/projects" className="hover:text-primary transition-colors">Projects</Link></li>
+                <li><Link to="/resources" className="hover:text-primary transition-colors">Resources</Link></li>
+                <li><Link to="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-heading font-semibold text-sm mb-4 text-foreground">Connect</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li className="hover:text-primary transition-colors cursor-pointer">LinkedIn</li>
-                <li className="hover:text-primary transition-colors cursor-pointer">Twitter</li>
-                <li className="hover:text-primary transition-colors cursor-pointer">Instagram</li>
+                <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">LinkedIn</a></li>
+                <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Twitter</a></li>
+                <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Instagram</a></li>
               </ul>
             </div>
           </div>

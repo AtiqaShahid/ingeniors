@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -45,16 +46,16 @@ const HeroSection = () => {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <Button variant="glow" size="lg" className="text-base px-8">
-                Get Started
+              <Button variant="glow" size="lg" className="text-base px-8" asChild>
+                <Link to="/contact">Get Started</Link>
               </Button>
-              <Button variant="glow-outline" size="lg" className="text-base px-8">
-                View Projects
+              <Button variant="glow-outline" size="lg" className="text-base px-8" asChild>
+                <Link to="/projects">View Projects</Link>
               </Button>
             </div>
           </motion.div>
 
-          {/* Hero visual - abstract 3D-like element */}
+          {/* Hero visual */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -62,6 +63,15 @@ const HeroSection = () => {
             className="relative hidden lg:flex items-center justify-center"
           >
             <div className="relative w-full aspect-square max-w-lg mx-auto">
+              {/* Background engineering image */}
+              <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&q=80"
+                  alt="Abstract engineering visualization"
+                  className="w-full h-full object-cover opacity-20"
+                  loading="lazy"
+                />
+              </div>
               {/* Floating geometric shapes */}
               <div className="absolute inset-0 animate-float">
                 <div className="absolute top-[10%] left-[15%] w-32 h-32 border border-primary/20 rounded-2xl rotate-12 glass-card" />

@@ -2,24 +2,31 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Services", href: "#services" },
-  { label: "About", href: "#capabilities" },
-  { label: "Projects", href: "#projects" },
-  { label: "Clients", href: "#clients" },
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "About", href: "/about" },
+  { label: "Projects", href: "/projects" },
+  { label: "Resources", href: "/resources" },
+  { label: "Clients", href: "/clients" },
 ];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
 
   return (
     <nav
@@ -30,24 +37,28 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4">
-        <a href="#home" className="font-heading text-xl md:text-2xl font-bold tracking-tight">
+        <Link to="/" className="font-heading text-xl md:text-2xl font-bold tracking-tight">
           <span className="text-foreground">GEOMETRIC</span>
           <span className="text-gradient">X</span>
-        </a>
+        </Link>
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200"
+              to={link.href}
+              className={`text-sm font-medium transition-colors duration-200 ${
+                location.pathname === link.href || (link.href !== "/" && location.pathname.startsWith(link.href))
+                  ? "text-primary"
+                  : "text-muted-foreground hover:text-primary"
+              }`}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
-          <Button variant="glow" size="sm">
-            Get Started
+          <Button variant="glow" size="sm" asChild>
+            <Link to="/contact">Get Started</Link>
           </Button>
         </div>
 
@@ -71,17 +82,18 @@ const Navbar = () => {
           >
             <div className="container mx-auto px-4 py-6 flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors py-2"
+                  to={link.href}
+                  className={`text-sm font-medium transition-colors py-2 ${
+                    location.pathname === link.href ? "text-primary" : "text-muted-foreground hover:text-primary"
+                  }`}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
-              <Button variant="glow" size="sm" className="w-fit mt-2">
-                Get Started
+              <Button variant="glow" size="sm" className="w-fit mt-2" asChild>
+                <Link to="/contact">Get Started</Link>
               </Button>
             </div>
           </motion.div>
