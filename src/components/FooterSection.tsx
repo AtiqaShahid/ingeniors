@@ -29,7 +29,7 @@ const FooterSection = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             <div>
               <Link to="/" className="font-heading text-xl font-bold mb-4 block">
-                GEOMETRIC<span className="text-gradient">X</span>
+                INGENI<span className="text-gradient">ORS</span>
               </Link>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Precise Innovative Solutions for modern engineering challenges.
@@ -56,7 +56,7 @@ const FooterSection = () => {
             <div>
               <h4 className="font-heading font-semibold text-sm mb-4 text-foreground">Connect</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">LinkedIn</a></li>
+                <li><a href="https://www.linkedin.com/company/108181928/admin/dashboard/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">LinkedIn</a></li>
                 <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Twitter</a></li>
                 <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Instagram</a></li>
               </ul>
@@ -64,7 +64,7 @@ const FooterSection = () => {
           </div>
           <div className="glow-line h-px w-full mb-8" />
           <p className="text-xs text-muted-foreground text-center">
-            © 2024 Geometricx. All rights reserved.
+            © {new Date().getFullYear()} Ingeniors. All rights reserved.
           </p>
         </div>
       </footer>

@@ -26,7 +26,7 @@ const CapabilitiesSection = () => {
               Solutions
             </h2>
             <p className="text-muted-foreground leading-relaxed max-w-lg">
-              At Geometricx, we combine expertise, innovation, and teamwork to transform your ideas into market-ready products. Our approach is centered around collaborative design processes that ensure each project benefits from diverse perspectives and expert insights.
+              At Ingeniors, we combine expertise, innovation, and teamwork to transform your ideas into market-ready products. Our approach is centered around collaborative design processes that ensure each project benefits from diverse perspectives and expert insights.
             </p>
           </motion.div>
 

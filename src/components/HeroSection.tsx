@@ -42,7 +42,7 @@ const HeroSection = () => {
             </h1>
 
             <p className="text-muted-foreground text-base lg:text-lg max-w-lg mb-10 leading-relaxed">
-              Unlock the full potential of your projects with Geometricx's state-of-the-art CAD design and engineering solutions. From conceptualization to execution, our tailored services ensure precision, efficiency, and scalability.
+              Unlock the full potential of your projects with Ingeniors' state-of-the-art CAD design and engineering solutions. From conceptualization to execution, our tailored services ensure precision, efficiency, and scalability.
             </p>
 
             <div className="flex flex-wrap gap-4">
