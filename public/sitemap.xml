@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://ingeniors.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://ingeniors.com/services</loc><priority>0.9</priority></url>
+  <url><loc>https://ingeniors.com/services/structural-analysis</loc><priority>0.8</priority></url>
+  <url><loc>https://ingeniors.com/services/3d-cad-modeling</loc><priority>0.8</priority></url>
+  <url><loc>https://ingeniors.com/services/2d-technical-drawings</loc><priority>0.8</priority></url>
+  <url><loc>https://ingeniors.com/services/sheet-metal-design</loc><priority>0.8</priority></url>
+  <url><loc>https://ingeniors.com/services/product-visualization</loc><priority>0.8</priority></url>
+  <url><loc>https://ingeniors.com/projects</loc><priority>0.8</priority></url>
+  <url><loc>https://ingeniors.com/projects/hexacopter-design</loc><priority>0.7</priority></url>
+  <url><loc>https://ingeniors.com/projects/6-dof-industrial-robot</loc><priority>0.7</priority></url>
+  <url><loc>https://ingeniors.com/projects/adjustable-sheet-metal-shelving</loc><priority>0.7</priority></url>
+  <url><loc>https://ingeniors.com/resources</loc><priority>0.8</priority></url>
+  <url><loc>https://ingeniors.com/resources/importance-of-fea-in-modern-engineering</loc><priority>0.7</priority></url>
+  <url><loc>https://ingeniors.com/resources/gdt-best-practices</loc><priority>0.7</priority></url>
+  <url><loc>https://ingeniors.com/resources/cad-to-manufacturing</loc><priority>0.7</priority></url>
+  <url><loc>https://ingeniors.com/about</loc><priority>0.7</priority></url>
+  <url><loc>https://ingeniors.com/contact</loc><priority>0.7</priority></url>
+  <url><loc>https://ingeniors.com/clients</loc><priority>0.6</priority></url>
+</urlset>

@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
 import { getResourceBySlug, resources } from "@/data/resources";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 const ResourceDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -17,6 +18,20 @@ const ResourceDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
+      <Helmet>
+        <title>{resource.title} — Ingeniors Resources</title>
+        <meta name="description" content={resource.excerpt} />
+        <link rel="canonical" href={`https://ingeniors.com/resources/${resource.slug}`} />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": resource.title,
+          "description": resource.excerpt,
+          "author": { "@type": "Organization", "name": "Ingeniors" },
+          "datePublished": resource.date,
+          "publisher": { "@type": "Organization", "name": "Ingeniors" }
+        })}</script>
+      </Helmet>
       <Navbar />
 
       <section className="relative pt-24">
@@ -30,9 +45,7 @@ const ResourceDetailPage = () => {
               <ArrowLeft className="w-4 h-4" /> Back to Resources
             </Link>
             <h1 className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold mb-3">{resource.title}</h1>
-            <p className="text-sm text-muted-foreground">
-              {resource.author} · {resource.date}
-            </p>
+            <p className="text-sm text-muted-foreground">{resource.author} · {resource.date}</p>
           </motion.div>
         </div>
       </section>
@@ -40,13 +53,7 @@ const ResourceDetailPage = () => {
       <section className="py-16 lg:py-24">
         <div className="container mx-auto px-4 max-w-3xl">
           {resource.content.map((para, i) => (
-            <motion.p
-              key={i}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 + i * 0.05 }}
-              className="text-muted-foreground text-base lg:text-lg leading-relaxed mb-6"
-            >
+            <motion.p key={i} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 + i * 0.05 }} className="text-muted-foreground text-base lg:text-lg leading-relaxed mb-6">
               {para}
             </motion.p>
           ))}
@@ -57,13 +64,9 @@ const ResourceDetailPage = () => {
               <div className="space-y-4">
                 {related.map((r) => (
                   <Link key={r!.slug} to={`/resources/${r!.slug}`} className="block glass-card p-5 group hover:-translate-y-0.5 transition-all duration-300">
-                    <h4 className="font-heading font-semibold text-foreground group-hover:text-primary transition-colors mb-1">
-                      {r!.title}
-                    </h4>
+                    <h4 className="font-heading font-semibold text-foreground group-hover:text-primary transition-colors mb-1">{r!.title}</h4>
                     <p className="text-sm text-muted-foreground line-clamp-1">{r!.excerpt}</p>
-                    <span className="inline-flex items-center gap-1 text-primary text-sm mt-2">
-                      Read more <ArrowRight className="w-3 h-3" />
-                    </span>
+                    <span className="inline-flex items-center gap-1 text-primary text-sm mt-2">Read more <ArrowRight className="w-3 h-3" /></span>
                   </Link>
                 ))}
               </div>

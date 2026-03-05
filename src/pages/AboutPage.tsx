@@ -4,6 +4,7 @@ import FooterSection from "@/components/FooterSection";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Target, Lightbulb, Users, Zap } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 const values = [
   { icon: Target, title: "Precision", description: "Every design is engineered to exact specifications with rigorous quality control." },
@@ -15,6 +16,11 @@ const values = [
 const AboutPage = () => {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
+      <Helmet>
+        <title>About Ingeniors — Precision Engineering Experts</title>
+        <meta name="description" content="Learn about Ingeniors, a precision CAD design and engineering consultancy specializing in 3D modeling, structural analysis, and product visualization." />
+        <link rel="canonical" href="https://ingeniors.com/about" />
+      </Helmet>
       <Navbar />
 
       <section className="relative pt-32 pb-24 lg:pt-40 lg:pb-32">
@@ -27,7 +33,7 @@ const AboutPage = () => {
                 Engineering <span className="text-gradient">Excellence</span>
               </h1>
               <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                Geometricx is a precision CAD design and engineering consultancy specializing in 3D modeling, structural analysis, sheet metal design, and product visualization. We partner with innovators across industries to transform concepts into production-ready solutions.
+                Ingeniors is a precision CAD design and engineering consultancy specializing in 3D modeling, structural analysis, sheet metal design, and product visualization. We partner with innovators across industries to transform concepts into production-ready solutions.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-8">
                 Our team brings decades of combined experience in mechanical engineering, industrial design, and manufacturing. We leverage industry-leading tools including SolidWorks, CATIA, ANSYS, and Fusion 360 to deliver solutions that exceed expectations.
@@ -116,7 +122,7 @@ const AboutPage = () => {
                 Our engineers hold advanced degrees in mechanical engineering, aerospace engineering, and industrial design. We're passionate about precision and committed to delivering solutions that work in the real world.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                Whether you're a startup prototyping your first product or an enterprise optimizing a production line, Geometricx has the expertise and tools to accelerate your success.
+                Whether you're a startup prototyping your first product or an enterprise optimizing a production line, Ingeniors has the expertise and tools to accelerate your success.
               </p>
             </motion.div>
           </div>

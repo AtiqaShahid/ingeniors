@@ -5,8 +5,10 @@ import FooterSection from "@/components/FooterSection";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Linkedin } from "lucide-react";
 import { z } from "zod";
+import { supabase } from "@/integrations/supabase/client";
+import { Helmet } from "react-helmet-async";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -23,12 +25,14 @@ const ContactPage = () => {
   const [errors, setErrors] = useState<Partial<Record<keyof ContactForm, string>>>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     if (errors[e.target.name as keyof ContactForm]) {
       setErrors({ ...errors, [e.target.name]: undefined });
     }
+    setSubmitError(null);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -44,14 +48,34 @@ const ContactPage = () => {
       return;
     }
     setSubmitting(true);
-    // Simulated API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setSubmitting(false);
-    setSubmitted(true);
+    setSubmitError(null);
+
+    try {
+      const { error } = await supabase.from("contact_submissions").insert({
+        name: result.data.name,
+        email: result.data.email,
+        company: result.data.company || null,
+        phone: result.data.phone || null,
+        message: result.data.message,
+      });
+
+      if (error) throw error;
+      setSubmitted(true);
+    } catch (err: any) {
+      console.error("Contact submission error:", err);
+      setSubmitError("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
+      <Helmet>
+        <title>Contact Ingeniors — Let's Connect</title>
+        <meta name="description" content="Get in touch with Ingeniors. Start your next precision engineering project today." />
+        <link rel="canonical" href="https://ingeniors.com/contact" />
+      </Helmet>
       <Navbar />
 
       <section className="relative pt-32 pb-24 lg:pt-40 lg:pb-32">
@@ -67,13 +91,11 @@ const ContactPage = () => {
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-5 gap-12 max-w-5xl mx-auto">
-            {/* Form */}
+          <div className="max-w-2xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="lg:col-span-3"
             >
               {submitted ? (
                 <div className="glass-card p-12 text-center">
@@ -142,35 +164,25 @@ const ContactPage = () => {
                     />
                     {errors.message && <p className="text-xs text-destructive mt-1">{errors.message}</p>}
                   </div>
+                  {submitError && <p className="text-sm text-destructive">{submitError}</p>}
                   <Button variant="glow" size="lg" className="w-full" disabled={submitting}>
                     {submitting ? "Sending..." : "Send Message"}
                   </Button>
+
+                  <div className="text-center pt-4 border-t border-border/30">
+                    <p className="text-sm text-muted-foreground mb-3">Or connect with us on</p>
+                    <a
+                      href="https://www.linkedin.com/company/108181928/admin/dashboard/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-primary/30 bg-primary/5 text-primary text-sm font-medium hover:bg-primary/10 hover:shadow-[0_0_20px_-5px_hsl(var(--glow-primary)/0.3)] transition-all duration-300"
+                    >
+                      <Linkedin className="w-4 h-4" />
+                      LinkedIn
+                    </a>
+                  </div>
                 </form>
               )}
-            </motion.div>
-
-            {/* Info */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="lg:col-span-2 space-y-6"
-            >
-              <div className="glass-card p-6">
-                <Mail className="w-5 h-5 text-primary mb-3" />
-                <h4 className="font-heading font-semibold text-foreground mb-1">Email</h4>
-                <p className="text-sm text-muted-foreground">info@geometricx.com</p>
-              </div>
-              <div className="glass-card p-6">
-                <Phone className="w-5 h-5 text-primary mb-3" />
-                <h4 className="font-heading font-semibold text-foreground mb-1">Phone</h4>
-                <p className="text-sm text-muted-foreground">+1 (555) 123-4567</p>
-              </div>
-              <div className="glass-card p-6">
-                <MapPin className="w-5 h-5 text-primary mb-3" />
-                <h4 className="font-heading font-semibold text-foreground mb-1">Location</h4>
-                <p className="text-sm text-muted-foreground">Remote-first, Global</p>
-              </div>
             </motion.div>
           </div>
         </div>

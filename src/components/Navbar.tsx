@@ -38,8 +38,8 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4">
         <Link to="/" className="font-heading text-xl md:text-2xl font-bold tracking-tight">
-          <span className="text-foreground">GEOMETRIC</span>
-          <span className="text-gradient">X</span>
+          <span className="text-foreground">INGENI</span>
+          <span className="text-gradient">ORS</span>
         </Link>
 
         {/* Desktop */}
@@ -66,6 +66,7 @@ const Navbar = () => {
         <button
           className="md:hidden text-foreground"
           onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle navigation menu"
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
