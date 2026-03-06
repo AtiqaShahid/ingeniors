@@ -92,6 +92,26 @@ const ContactPage = () => {
           </motion.div>
 
           <div className="max-w-2xl mx-auto">
+            {/* LinkedIn CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.05 }}
+              className="glass-card p-6 mb-8 text-center border-primary/20"
+            >
+              <p className="text-muted-foreground mb-4">Prefer a direct conversation? Connect with us on LinkedIn.</p>
+              <a
+                href="https://www.linkedin.com/company/108181928/admin/dashboard/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button variant="glow" size="lg" className="gap-2">
+                  <Linkedin className="w-5 h-5" />
+                  Contact via LinkedIn
+                </Button>
+              </a>
+            </motion.div>
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -105,6 +125,7 @@ const ContactPage = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="glass-card p-8 space-y-5">
+                  <p className="text-sm text-muted-foreground text-center mb-2">Or send us a message directly</p>
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
                       <label className="text-sm font-medium text-foreground mb-1.5 block">Name *</label>
@@ -168,19 +189,6 @@ const ContactPage = () => {
                   <Button variant="glow" size="lg" className="w-full" disabled={submitting}>
                     {submitting ? "Sending..." : "Send Message"}
                   </Button>
-
-                  <div className="text-center pt-4 border-t border-border/30">
-                    <p className="text-sm text-muted-foreground mb-3">Or connect with us on</p>
-                    <a
-                      href="https://www.linkedin.com/company/108181928/admin/dashboard/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-primary/30 bg-primary/5 text-primary text-sm font-medium hover:bg-primary/10 hover:shadow-[0_0_20px_-5px_hsl(var(--glow-primary)/0.3)] transition-all duration-300"
-                    >
-                      <Linkedin className="w-4 h-4" />
-                      LinkedIn
-                    </a>
-                  </div>
                 </form>
               )}
             </motion.div>
