@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Linkedin, Facebook } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const FooterSection = () => {
@@ -56,9 +56,28 @@ const FooterSection = () => {
             <div>
               <h4 className="font-heading font-semibold text-sm mb-4 text-foreground">Connect</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="https://www.linkedin.com/company/108181928/admin/dashboard/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">LinkedIn</a></li>
-                <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Twitter</a></li>
-                <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Instagram</a></li>
+                <li>
+                  <a
+                    href="https://www.linkedin.com/company/108181928/admin/dashboard/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors inline-flex items-center gap-2"
+                  >
+                    <Linkedin className="w-4 h-4" />
+                    LinkedIn
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.facebook.com/61568716863379/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors inline-flex items-center gap-2"
+                  >
+                    <Facebook className="w-4 h-4" />
+                    Facebook
+                  </a>
+                </li>
               </ul>
             </div>
           </div>

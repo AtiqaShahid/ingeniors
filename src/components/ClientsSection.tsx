@@ -1,6 +1,13 @@
 import { motion } from "framer-motion";
+import { Building2, Stethoscope, Shirt, Music, Compass } from "lucide-react";
 
-const clients = ["WhiteSmilePro", "Dosta", "HOODTIE", "Beelzebubs", "Axis"];
+const clients = [
+  { name: "WhiteSmilePro", icon: Stethoscope },
+  { name: "Dosta", icon: Building2 },
+  { name: "HOODTIE", icon: Shirt },
+  { name: "Beelzebubs", icon: Music },
+  { name: "Axis", icon: Compass },
+];
 
 const ClientsSection = () => {
   return (
@@ -21,21 +28,27 @@ const ClientsSection = () => {
           </p>
         </motion.div>
 
-        <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-16">
-          {clients.map((client, i) => (
-            <motion.div
-              key={client}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="glass-card px-8 py-5 group hover:-translate-y-1 transition-all duration-300"
-            >
-              <span className="font-heading text-lg font-semibold text-muted-foreground group-hover:text-primary transition-colors duration-300">
-                {client}
-              </span>
-            </motion.div>
-          ))}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+          {clients.map((client, i) => {
+            const Icon = client.icon;
+            return (
+              <motion.div
+                key={client.name}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="glass-card p-6 flex flex-col items-center gap-3 group hover:-translate-y-1 transition-all duration-300"
+              >
+                <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 group-hover:shadow-[0_0_20px_-5px_hsl(var(--glow-primary)/0.3)] transition-all duration-300">
+                  <Icon className="w-6 h-6 text-muted-foreground group-hover:text-primary transition-colors duration-300" />
+                </div>
+                <span className="font-heading text-sm font-semibold text-muted-foreground group-hover:text-primary transition-colors duration-300">
+                  {client.name}
+                </span>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
