@@ -42,6 +42,7 @@ const FooterSection = () => {
                 <li><Link to="/services/3d-cad-modeling" className="hover:text-primary transition-colors">3D CAD Modeling</Link></li>
                 <li><Link to="/services/2d-technical-drawings" className="hover:text-primary transition-colors">2D Technical Drawings</Link></li>
                 <li><Link to="/services/sheet-metal-design" className="hover:text-primary transition-colors">Sheet Metal Design</Link></li>
+                <li><Link to="/services/product-visualization" className="hover:text-primary transition-colors">Product Visualization</Link></li>
               </ul>
             </div>
             <div>
