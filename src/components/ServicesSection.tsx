@@ -63,6 +63,7 @@ const ServicesSection = () => {
                         alt={service.title}
                         className="w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-[1.03] transition-all duration-500"
                         loading="lazy"
+                        decoding="async"
                         onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.svg"; }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />

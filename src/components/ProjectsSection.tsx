@@ -38,10 +38,11 @@ const ProjectsSection = () => {
                 <div className="glass-card overflow-hidden group hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 cursor-pointer">
                   <div className="h-48 relative overflow-hidden">
                     <img
-                      src={project.heroImage}
+                      src={project.heroImage.replace('w=1200', 'w=600').replace('q=80', 'q=60')}
                       alt={project.title}
                       className="w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-[1.03] transition-all duration-500"
                       loading="lazy"
+                      decoding="async"
                       onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.svg"; }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
