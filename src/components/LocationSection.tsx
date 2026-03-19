@@ -40,6 +40,7 @@ const LocationSection = () => (
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             title="Ingeniors Office Location"
+            aria-hidden="true"
           />
           {/* Overlay for dark blend */}
           <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-transparent to-background/80" />

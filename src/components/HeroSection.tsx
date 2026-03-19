@@ -66,10 +66,11 @@ const HeroSection = () => {
               {/* Background engineering image */}
               <div className="absolute inset-0 rounded-2xl overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&q=80"
+                  src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&q=60"
                   alt="Abstract engineering visualization"
                   className="w-full h-full object-cover opacity-20"
-                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
                 />
               </div>
               {/* Floating geometric shapes */}
